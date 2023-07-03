@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://images.hdqwalls.com/wallpapers/rick-and-morty-out-of-control-4k-ak.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#characters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.character {
+  width: 45%;
+  background-image: linear-gradient(
+      rgba(34, 34, 34, 0.95),
+      rgba(34, 34, 34, 0.95)
+    ),
+    url("https://images.freeimages.com/images/large-previews/f5a/metal-texture-3-1199822.jpg");
+  box-shadow: 0 0 20px 10px chartreuse;
+  color: chartreuse;
+  margin: 20px;
+  display: flex;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.character:hover {
+  transform: scale(1.1);
+}
+
+.character p {
+  font-weight: bold;
+}
+
+.character img {
+  border-radius: 30px 0 0 30px;
+}
+
+.character h2 {
+  padding-top: 140px;
+}
+
+.characterDesc {
+  padding: 30px;
+}
+
+@media (max-width: 720px) {
+  #characters-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .character {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .character img {
+    width: 100%;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .character h2 {
+    padding-top: 40px;
+  }
+}
