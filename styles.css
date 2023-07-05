@@ -21,6 +21,7 @@ body {
 
 .character {
   width: 45%;
+  height: 20vh;
   background-image: linear-gradient(
       rgba(34, 34, 34, 0.95),
       rgba(34, 34, 34, 0.95)
@@ -28,64 +29,138 @@ body {
     url("https://images.freeimages.com/images/large-previews/f5a/metal-texture-3-1199822.jpg");
   box-shadow: 0 0 20px 10px chartreuse;
   color: chartreuse;
-  margin: 20px;
+  margin: 30px;
   display: flex;
   border-radius: 30px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .character:hover {
   transform: scale(1.1);
 }
 
-.character p {
-  font-weight: bold;
+.character h1 {
+  padding: 90px 30px;
+  font-style: italic;
 }
 
 .character img {
   border-radius: 30px 0 0 30px;
 }
 
-.character h2 {
-  padding-top: 140px;
-}
-
-.characterDesc {
-  padding: 30px;
-}
-
 #charactersDetails {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  padding: 50px;
   position: fixed;
   display: none;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   height: 90vh;
   border-radius: 50px;
-  box-shadow: 0 0 20px 10px chartreuse;
+  box-shadow: 0 0 20px 10px #7fff00;
   background-color: #222;
+}
+
+#charactersDetails h1 {
+  color: #fff;
+  /* -webkit-text-stroke: 1px #7fff00; */
+  padding-top: 30px;
+  font-size: 4rem;
+  text-shadow: 0 0 0.1em #000;
+}
+
+.divDetailsDesc {
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.divDetailsDesc li {
+  text-shadow: 0 0 0.2em #000;
+}
+
+.divFlex {
+  display: flex;
+}
+
+.divFlex img {
+  border: 5px solid #7fff00;
+  border-radius: 30px;
+  box-shadow: 0 0 30px #7fff00;
+  width: 500px;
+}
+
+#x {
+  width: 100px;
+  position: absolute;
+  top: 10%;
+  left: 85%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#x:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 720px) {
   #characters-container {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
   }
-
   .character {
     width: 100%;
+    height: auto;
+    padding: 0;
     flex-direction: column;
   }
 
   .character img {
-    width: 100%;
     border-radius: 30px 30px 0 0;
   }
 
-  .character h2 {
-    padding-top: 40px;
+  .character h1 {
+    padding: 30px 90px;
+    font-size: 1.5rem;
+  }
+
+  #charactersDetails {
+    flex-direction: column;
+  }
+
+  #charactersDetails h1 {
+    font-size: 2rem;
+  }
+
+  .divFlex {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .divFlex img {
+    width: 300px;
+  }
+
+  .divDetailsDesc {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .divDetailsDesc li {
+    padding: 0;
+    font-size: 1.5rem;
+  }
+
+  #x {
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%);
   }
 }

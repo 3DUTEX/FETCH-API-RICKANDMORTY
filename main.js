@@ -1,6 +1,5 @@
 const url = "https://rickandmortyapi.com/api/character";
-
-const btn = document.querySelector("#btn");
+let checked = false;
 
 //cria elemento html
 function create(elemento) {
@@ -8,7 +7,7 @@ function create(elemento) {
 }
 
 //inclui elemento
-function include(onde, oque) {
+function include(oque, onde) {
   return onde.appendChild(oque);
 }
 
@@ -22,57 +21,100 @@ async function getAllCharacters() {
   console.log(data);
 
   data.results.map((character) => {
+    //criando elementos
     const div = create("div");
-    const divDesc = create("div");
     const img = create("img");
     const name = create("h1");
-    const specie = create("p");
-    const status = create("p");
-    const location = create("h2");
+    const divDetails = create("div");
+    const divFlex = create("div");
+    const divDetailsDesc = create("div");
+    const titleDesc = create("h1");
+    const nameDetails = create("h1");
+    const imgDetails = create("img");
+    const specie = create("li");
+    const status = create("li");
+    const location = create("li");
 
     div.classList.add("character");
-    divDesc.classList.add("characterDesc");
 
+    //definindo valors aos elementos
     img.src = character.image;
     name.innerText = character.name;
-    specie.innerText = character.species;
-    status.innerText = character.status;
-    location.innerText = `Local: ${character.location.name}`;
 
-    include(div, img);
-    include(div, divDesc);
-    include(divDesc, name);
-    include(divDesc, specie);
-    include(divDesc, status);
-    include(divDesc, location);
+    //incluindo os elementos em uma div
+    include(img, div);
+    include(name, div);
 
-    if (character.status === "Alive") {
-      status.style.color = "chartreuse";
-    } else if (character.status === "unknown") {
-      status.style.color = "#fff";
-    } else {
-      status.style.color = "red";
-    }
-
+    //colocando a div geral em uma div do html
     document.querySelector("#characters-container").appendChild(div);
 
     //CharactersDetails
-    let checked = false;
+    const charactersDetails = document.querySelector("#charactersDetails");
+    const x = document.querySelector("#x");
 
     function charactersDetailsOn() {
-      charactersDetails.style.display = "block";
-      charactersDetails.appendChild(name);
+      //se characterDetails tiver um elemento como filho
+      if (charactersDetails.children.length == 1) {
+        //atribuindo valores aos elementos
+        nameDetails.innerText = `Name: ${character.name}`;
+        imgDetails.src = character.image;
+        specie.innerText = `Specie: ${character.species}`;
+        status.innerText = `${character.status}`;
+        location.innerText = `Local: ${character.location.name}`;
+        titleDesc.innerText = "Descrição:";
+        divDetails.classList.add("characterDetails");
+        divDetailsDesc.classList.add("divDetailsDesc");
+        divFlex.classList.add("divFlex");
+
+        if (character.status === "Alive") {
+          status.style.color = "chartreuse";
+        } else if (character.status === "unknown") {
+          status.style.color = "#4e4e4e";
+        } else {
+          status.style.color = "red";
+          imgDetails.style.filter = "grayscale(100%)";
+        }
+
+        // include(imgDetails, divDetailsDesc);
+        // include(nameDetails, divDetails);
+        // include(specie, divDetailsDesc);
+        // include(status, divDetailsDesc);
+        // include(location, divDetailsDesc);
+        // include(divDetailsDesc, charactersDetails);
+        // include(divDetails, charactersDetails);
+
+        //incluindo os elementos
+        include(imgDetails, divFlex);
+        include(divDetailsDesc, divFlex);
+        include(divFlex, divDetails);
+        include(titleDesc, divDetailsDesc);
+        include(nameDetails, divDetails);
+        include(specie, divDetailsDesc);
+        include(status, divDetailsDesc);
+        include(location, divDetailsDesc);
+        include(divDetails, charactersDetails);
+      } else {
+        //se não tiver apenas 1 elemento como filho, remove o characterDetails atual
+        charactersDetails.removeChild(
+          document.querySelector(".characterDetails")
+        );
+
+        //chama novamente a função
+        charactersDetailsOn();
+      }
     }
 
-    div.addEventListener("click", function () {
-      const charactersDetails = document.querySelector("#charactersDetails");
+    x.addEventListener("click", function () {
+      document.querySelector("#charactersDetails").style.display = "none";
+      checked = false;
+    });
 
+    div.addEventListener("click", function () {
       checked = !checked;
 
       if (checked) {
+        charactersDetails.style.display = "flex";
         charactersDetailsOn();
-      } else {
-        charactersDetails.style.display = "none";
       }
     });
   });
