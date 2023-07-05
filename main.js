@@ -1,5 +1,7 @@
 const url = "https://rickandmortyapi.com/api/character";
 
+const btn = document.querySelector("#btn");
+
 //cria elemento html
 function create(elemento) {
   return document.createElement(elemento);
@@ -51,7 +53,28 @@ async function getAllCharacters() {
     } else {
       status.style.color = "red";
     }
+
     document.querySelector("#characters-container").appendChild(div);
+
+    //CharactersDetails
+    let checked = false;
+
+    function charactersDetailsOn() {
+      charactersDetails.style.display = "block";
+      charactersDetails.appendChild(name);
+    }
+
+    div.addEventListener("click", function () {
+      const charactersDetails = document.querySelector("#charactersDetails");
+
+      checked = !checked;
+
+      if (checked) {
+        charactersDetailsOn();
+      } else {
+        charactersDetails.style.display = "none";
+      }
+    });
   });
 }
 
