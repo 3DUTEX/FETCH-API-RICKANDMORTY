@@ -61,7 +61,7 @@ async function getAllCharacters() {
         specie.innerText = `Specie: ${character.species}`;
         status.innerText = `${character.status}`;
         location.innerText = `Local: ${character.location.name}`;
-        titleDesc.innerText = "Descrição:";
+        titleDesc.innerText = "Description:";
         divDetails.classList.add("characterDetails");
         divDetailsDesc.classList.add("divDetailsDesc");
         divFlex.classList.add("divFlex");
@@ -99,7 +99,6 @@ async function getAllCharacters() {
           document.querySelector(".characterDetails")
         );
 
-        //chama novamente a função
         charactersDetailsOn();
       }
     }
